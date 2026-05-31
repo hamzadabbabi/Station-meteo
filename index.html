@@ -16,6 +16,7 @@
   --border:   rgba(255,255,255,0.9);
   --shadow:   0 8px 32px rgba(100,120,200,0.13);
   --shadow-hover: 0 16px 48px rgba(100,120,200,0.22);
+
   --blue:     #4f7cff;
   --cyan:     #06c0d9;
   --orange:   #ff7043;
@@ -24,6 +25,7 @@
   --purple:   #845ef7;
   --pink:     #f553a0;
   --red:      #ff4d6d;
+
   --blue-pale:   #eef2ff;
   --cyan-pale:   #e0faff;
   --orange-pale: #fff3ef;
@@ -31,11 +33,13 @@
   --green-pale:  #e6fff7;
   --purple-pale: #f3effe;
   --pink-pale:   #ffeef7;
+
   --text:    #1e2a4a;
   --muted:   #8896b3;
   --light:   #c8d0e7;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
+
 body {
   font-family: 'Outfit', sans-serif;
   background: var(--bg);
@@ -43,129 +47,362 @@ body {
   color: var(--text);
   overflow-x: hidden;
 }
-.bg-blobs { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
-.blob { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.35; }
+
+/* ---- BG BLOBS ---- */
+.bg-blobs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+}
 .blob1 { width:500px;height:500px; background:#a5c8ff; top:-150px; left:-100px; animation:drift1 12s ease-in-out infinite alternate; }
 .blob2 { width:400px;height:400px; background:#b9f2e0; top:40%; right:-120px; animation:drift2 15s ease-in-out infinite alternate; }
 .blob3 { width:350px;height:350px; background:#ffd6a5; bottom:-80px; left:30%; animation:drift3 10s ease-in-out infinite alternate; }
 .blob4 { width:300px;height:300px; background:#d0baff; top:20%; left:40%; animation:drift1 18s ease-in-out infinite alternate-reverse; }
+
 @keyframes drift1 { from{transform:translate(0,0)} to{transform:translate(40px,30px)} }
 @keyframes drift2 { from{transform:translate(0,0)} to{transform:translate(-30px,40px)} }
 @keyframes drift3 { from{transform:translate(0,0)} to{transform:translate(20px,-30px)} }
-.app { position:relative; z-index:1; max-width:1380px; margin:0 auto; padding:32px 28px; }
-.header { display:flex; justify-content:space-between; align-items:center; margin-bottom:36px; flex-wrap:wrap; gap:16px; }
-.brand { display:flex; align-items:center; gap:14px; }
-.brand-icon { width:52px;height:52px; background:linear-gradient(135deg,var(--blue),var(--cyan)); border-radius:16px; display:flex;align-items:center;justify-content:center; font-size:24px; box-shadow:0 8px 20px rgba(79,124,255,0.35); }
-.brand-text h1 { font-family:'Bricolage Grotesque',sans-serif; font-size:22px;font-weight:700; color:var(--text); letter-spacing:-0.5px; }
-.brand-text p { font-size:12px;color:var(--muted); font-weight:400;margin-top:1px; }
-.header-badges { display:flex;gap:10px;align-items:center;flex-wrap:wrap; }
-.badge-live { display:flex;align-items:center;gap:7px; background:var(--white); border:1.5px solid rgba(0,196,140,0.3); border-radius:100px; padding:8px 16px; font-size:12px;font-weight:500; color:#00a07a; box-shadow:0 2px 12px rgba(0,196,140,0.12); }
-.live-dot { width:7px;height:7px;border-radius:50%; background:var(--green); box-shadow:0 0 0 3px rgba(0,196,140,0.25); animation:livepulse 2s infinite; }
+
+/* ---- LAYOUT ---- */
+.app {
+  position: relative;
+  z-index: 1;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 32px 28px;
+}
+
+/* ---- HEADER ---- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brand-icon {
+  width: 52px; height: 52px;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 8px 20px rgba(79,124,255,0.35);
+}
+.brand-text h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+.brand-text p {
+  font-size: 12px; color: var(--muted);
+  font-weight: 400; margin-top: 1px;
+}
+
+.header-badges {
+  display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+}
+.badge-live {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--white);
+  border: 1.5px solid rgba(0,196,140,0.3);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 12px; font-weight: 500;
+  color: #00a07a;
+  box-shadow: 0 2px 12px rgba(0,196,140,0.12);
+}
+.live-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 3px rgba(0,196,140,0.25);
+  animation: livepulse 2s infinite;
+}
 @keyframes livepulse { 0%,100%{box-shadow:0 0 0 3px rgba(0,196,140,0.25)} 50%{box-shadow:0 0 0 6px rgba(0,196,140,0.1)} }
-.badge-time { background:var(--white); border:1.5px solid rgba(79,124,255,0.2); border-radius:100px; padding:8px 16px; font-size:12px;font-weight:500; color:var(--blue); box-shadow:0 2px 12px rgba(79,124,255,0.1); }
-.glass { background:var(--card-bg); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1.5px solid var(--border); border-radius:24px; box-shadow:var(--shadow); transition:transform 0.25s,box-shadow 0.25s; }
-.glass:hover { transform:translateY(-4px); box-shadow:var(--shadow-hover); }
-.sensor-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-bottom:20px; }
-.sensor-card { padding:22px 18px 18px; position:relative; overflow:hidden; }
-.sensor-card .card-bg-icon { position:absolute; right:-12px;bottom:-16px; font-size:80px; opacity:0.07; line-height:1; pointer-events:none; }
-.sc-top { display:flex;justify-content:space-between;align-items:flex-start; margin-bottom:16px; }
-.sc-label { font-size:11px;font-weight:600; text-transform:uppercase;letter-spacing:1.2px; color:var(--muted); }
-.sc-icon { width:38px;height:38px;border-radius:12px; display:flex;align-items:center;justify-content:center; font-size:18px; flex-shrink:0; }
-.sc-val { font-family:'Bricolage Grotesque',sans-serif; font-size:42px;font-weight:700; line-height:1;letter-spacing:-2px; margin-bottom:2px; }
-.sc-unit { font-size:16px;font-weight:400;letter-spacing:0; }
-.sc-status { margin-top:10px;font-size:12px;font-weight:500; display:flex;align-items:center;gap:5px; padding:5px 10px;border-radius:100px; display:inline-flex;width:fit-content; }
-.sc-temp .sc-icon  { background:var(--orange-pale);color:var(--orange); }
-.sc-temp .sc-val   { color:var(--orange); }
-.sc-temp .sc-status{ background:var(--orange-pale);color:var(--orange); }
-.sc-hum .sc-icon   { background:var(--cyan-pale);color:var(--cyan); }
-.sc-hum .sc-val    { color:var(--cyan); }
-.sc-hum .sc-status { background:var(--cyan-pale);color:#0099b5; }
-.sc-light .sc-icon  { background:var(--yellow-pale);color:var(--yellow); }
-.sc-light .sc-val   { color:#e6a000; }
-.sc-light .sc-status{ background:var(--yellow-pale);color:#c48a00; }
-.sc-rain .sc-icon   { background:var(--blue-pale);color:var(--blue); }
-.sc-rain .sc-val    { color:var(--blue); }
-.sc-rain .sc-status { background:var(--blue-pale);color:var(--blue); }
-.sc-wind .sc-icon   { background:var(--purple-pale);color:var(--purple); }
-.sc-wind .sc-val    { color:var(--purple); }
-.sc-wind .sc-status { background:var(--purple-pale);color:var(--purple); }
-.mid-row { display:grid; grid-template-columns:2.2fr 1fr 1fr; gap:16px; margin-bottom:20px; }
-.main-chart-card { padding:24px; }
-.sensor-charts-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
-.sensor-detail-chart { padding:20px; }
-.card-title { font-family:'Bricolage Grotesque',sans-serif; font-size:15px;font-weight:600; color:var(--text);margin-bottom:6px; }
-.card-sub { font-size:12px;color:var(--muted);margin-bottom:20px; }
-.chart-legend { display:flex;gap:14px;margin-bottom:16px;flex-wrap:wrap; }
-.legend-item { display:flex;align-items:center;gap:6px; font-size:11px;color:var(--muted);font-weight:500; }
-.legend-swatch { width:22px;height:4px;border-radius:2px; }
-.donut-card { padding:24px;display:flex;flex-direction:column;align-items:center; }
-.donut-wrap { position:relative;width:160px;height:160px;margin:16px auto 0; }
-.donut-center { position:absolute;inset:0; display:flex;flex-direction:column;align-items:center;justify-content:center; }
-.donut-score { font-family:'Bricolage Grotesque',sans-serif; font-size:36px;font-weight:700; }
-.donut-sub { font-size:11px;color:var(--muted);margin-top:1px; }
-.comfort-items { width:100%;margin-top:16px; display:flex;flex-direction:column;gap:10px; }
-.comfort-row { display:flex;align-items:center;justify-content:space-between; font-size:12px; }
-.comfort-left { display:flex;align-items:center;gap:8px;color:var(--muted); }
+.badge-time {
+  background: var(--white);
+  border: 1.5px solid rgba(79,124,255,0.2);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 12px; font-weight: 500;
+  color: var(--blue);
+  box-shadow: 0 2px 12px rgba(79,124,255,0.1);
+}
+
+/* ---- GLASS CARD ---- */
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid var(--border);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.glass:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ---- SENSOR GRID ---- */
+.sensor-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.sensor-card {
+  padding: 22px 18px 18px;
+  position: relative;
+  overflow: hidden;
+}
+.sensor-card .card-bg-icon {
+  position: absolute;
+  right: -12px; bottom: -16px;
+  font-size: 80px;
+  opacity: 0.07;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.sc-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 16px;
+}
+.sc-label {
+  font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.2px;
+  color: var(--muted);
+}
+.sc-icon {
+  width: 38px; height: 38px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.sc-val {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 42px; font-weight: 700;
+  line-height: 1; letter-spacing: -2px;
+  margin-bottom: 2px;
+}
+.sc-unit { font-size: 16px; font-weight: 400; letter-spacing: 0; }
+.sc-status {
+  margin-top: 10px; font-size: 12px; font-weight: 500;
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 10px; border-radius: 100px;
+  display: inline-flex; width: fit-content;
+}
+
+/* color themes */
+.sc-temp .sc-icon  { background:var(--orange-pale); color:var(--orange); }
+.sc-temp .sc-val   { color: var(--orange); }
+.sc-temp .sc-status{ background:var(--orange-pale); color:var(--orange); }
+
+.sc-hum .sc-icon   { background:var(--cyan-pale); color:var(--cyan); }
+.sc-hum .sc-val    { color: var(--cyan); }
+.sc-hum .sc-status { background:var(--cyan-pale); color:#0099b5; }
+
+.sc-light .sc-icon  { background:var(--yellow-pale); color:var(--yellow); }
+.sc-light .sc-val   { color: #e6a000; }
+.sc-light .sc-status{ background:var(--yellow-pale); color:#c48a00; }
+
+.sc-rain .sc-icon   { background:var(--blue-pale); color:var(--blue); }
+.sc-rain .sc-val    { color: var(--blue); }
+.sc-rain .sc-status { background:var(--blue-pale); color:var(--blue); }
+
+.sc-wind .sc-icon   { background:var(--purple-pale); color:var(--purple); }
+.sc-wind .sc-val    { color: var(--purple); }
+.sc-wind .sc-status { background:var(--purple-pale); color:var(--purple); }
+
+/* ---- MID ROW ---- */
+.mid-row {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* ---- MAIN CHART ---- */
+.main-chart-card {
+  padding: 24px;
+}
+.card-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 15px; font-weight: 600;
+  color: var(--text); margin-bottom: 6px;
+}
+.card-sub { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+.chart-legend {
+  display: flex; gap: 14px; margin-bottom: 16px; flex-wrap: wrap;
+}
+.legend-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--muted); font-weight: 500;
+}
+.legend-swatch {
+  width: 22px; height: 4px; border-radius: 2px;
+}
+
+/* ---- DONUT ---- */
+.donut-card { padding: 24px; display: flex; flex-direction: column; align-items: center; }
+.donut-wrap { position:relative; width:160px; height:160px; margin: 16px auto 0; }
+.donut-center {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+}
+.donut-score {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 36px; font-weight: 700;
+}
+.donut-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.comfort-items {
+  width: 100%; margin-top: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.comfort-row {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 12px;
+}
+.comfort-left { display:flex; align-items:center; gap:8px; color:var(--muted); }
 .comfort-swatch { width:10px;height:10px;border-radius:3px; }
-.comfort-val { font-weight:600;color:var(--text);font-size:13px; }
-.rain-card { padding:24px;display:flex;flex-direction:column;justify-content:space-between; }
-.rain-big { font-family:'Bricolage Grotesque',sans-serif; font-size:48px;font-weight:800;line-height:1; margin:16px 0 4px; }
-.rain-sub { font-size:12px;color:var(--muted); }
+.comfort-val { font-weight:600; color:var(--text); font-size:13px; }
+
+/* ---- RAIN CARD ---- */
+.rain-card { padding: 24px; display:flex; flex-direction:column; justify-content:space-between; }
+.rain-big {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 48px; font-weight: 800; line-height:1;
+  margin: 16px 0 4px;
+}
+.rain-sub { font-size:12px; color:var(--muted); }
 .rain-bar-wrap { margin-top:16px; }
-.rain-bar-label { display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:6px; }
-.rain-track { height:8px;background:var(--blue-pale); border-radius:100px;overflow:hidden; }
-.rain-fill { height:100%; background:linear-gradient(90deg,var(--blue),var(--cyan)); border-radius:100px; transition:width 0.8s cubic-bezier(0.4,0,0.2,1); }
-.gauge-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px; }
-.gauge-card { padding:24px; }
-.gauge-card .card-title { margin-bottom:20px; }
-.half-gauge-wrap { position:relative;width:100%;max-width:220px;margin:0 auto; }
-.half-gauge-wrap svg { width:100%;display:block; }
-.gauge-label-center { position:absolute; bottom:4px;left:50%;transform:translateX(-50%); text-align:center; }
-.gauge-main-val { font-family:'Bricolage Grotesque',sans-serif; font-size:30px;font-weight:700; line-height:1; }
-.gauge-main-unit { font-size:12px;color:var(--muted); }
-.gauge-range { display:flex;justify-content:space-between; font-size:10px;color:var(--light); margin-top:6px; }
-.bottom-row { display:grid; grid-template-columns:1fr 320px; gap:16px; }
-.history-card { padding:24px;overflow:hidden; }
-.table-wrap { overflow-x:auto;margin-top:16px; }
-table { width:100%;border-collapse:collapse;font-size:13px; }
-thead th { padding:10px 14px; text-align:left; font-size:10px;font-weight:600; text-transform:uppercase;letter-spacing:1px; color:var(--muted); border-bottom:2px solid #eef0f8; background:rgba(79,124,255,0.03); }
-tbody td { padding:10px 14px; border-bottom:1px solid #f0f2fa; color:var(--text); }
+.rain-bar-label { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:6px; }
+.rain-track {
+  height: 8px; background: var(--blue-pale);
+  border-radius: 100px; overflow:hidden;
+}
+.rain-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  border-radius: 100px;
+  transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ---- GAUGE ROW ---- */
+.gauge-row {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.gauge-card { padding: 24px; }
+.gauge-card .card-title { margin-bottom: 20px; }
+
+.half-gauge-wrap { position:relative; width:100%; max-width:220px; margin:0 auto; }
+.half-gauge-wrap svg { width:100%; display:block; }
+.gauge-label-center {
+  position:absolute;
+  bottom: 4px; left:50%; transform:translateX(-50%);
+  text-align:center;
+}
+.gauge-main-val {
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:30px; font-weight:700;
+  line-height:1;
+}
+.gauge-main-unit { font-size:12px; color:var(--muted); }
+.gauge-range {
+  display:flex; justify-content:space-between;
+  font-size:10px; color:var(--light);
+  margin-top:6px;
+}
+
+/* ---- BOTTOM ROW ---- */
+.bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
+}
+.history-card { padding: 24px; overflow:hidden; }
+.table-wrap { overflow-x:auto; margin-top:16px; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+thead th {
+  padding: 10px 14px;
+  text-align:left;
+  font-size:10px; font-weight:600;
+  text-transform:uppercase; letter-spacing:1px;
+  color:var(--muted);
+  border-bottom:2px solid #eef0f8;
+  background: rgba(79,124,255,0.03);
+}
+tbody td {
+  padding:10px 14px;
+  border-bottom:1px solid #f0f2fa;
+  color:var(--text);
+}
 tbody tr:last-child td { border-bottom:none; }
 tbody tr:hover td { background:rgba(79,124,255,0.03); }
-.pill { display:inline-block; padding:3px 10px;border-radius:100px; font-size:11px;font-weight:600; }
-.pill-green  { background:var(--green-pale);color:#007a57; }
-.pill-orange { background:var(--orange-pale);color:#c75200; }
-.pill-blue   { background:var(--blue-pale);color:#2855d6; }
-.pill-red    { background:#ffecee;color:#cc1a2e; }
-.pill-cyan   { background:var(--cyan-pale);color:#007a93; }
+
+.pill {
+  display:inline-block;
+  padding:3px 10px; border-radius:100px;
+  font-size:11px; font-weight:600;
+}
+.pill-green  { background:var(--green-pale); color:#007a57; }
+.pill-orange { background:var(--orange-pale); color:#c75200; }
+.pill-blue   { background:var(--blue-pale);  color:#2855d6; }
+.pill-red    { background:#ffecee; color:#cc1a2e; }
+.pill-cyan   { background:var(--cyan-pale);  color:#007a93; }
 .pill-yellow { background:var(--yellow-pale);color:#8a5e00; }
 .pill-purple { background:var(--purple-pale);color:#5b2fd1; }
-.stats-card { padding:24px; }
-.stat-item { display:flex;align-items:center;justify-content:space-between; padding:12px 0; border-bottom:1px solid #f0f2fa; }
+
+/* ---- STATS CARD ---- */
+.stats-card { padding: 24px; }
+.stat-item {
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f2fa;
+}
 .stat-item:last-child { border-bottom:none; }
-.stat-left { display:flex;align-items:center;gap:10px; }
-.stat-icon { width:32px;height:32px;border-radius:10px; display:flex;align-items:center;justify-content:center; font-size:15px;flex-shrink:0; }
-.stat-name { font-size:13px;color:var(--muted);font-weight:500; }
-.stat-val { font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:700;color:var(--text); }
-@keyframes fadeSlideUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-.sensor-card { animation:fadeSlideUp 0.5s ease both; }
+.stat-left { display:flex; align-items:center; gap:10px; }
+.stat-icon {
+  width:32px;height:32px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px; flex-shrink:0;
+}
+.stat-name { font-size:13px; color:var(--muted); font-weight:500; }
+.stat-val { font-family:'Bricolage Grotesque',sans-serif; font-size:16px; font-weight:700; color:var(--text); }
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeSlideUp {
+  from { opacity:0; transform:translateY(16px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.sensor-card { animation: fadeSlideUp 0.5s ease both; }
 .sensor-card:nth-child(1){animation-delay:0.05s}
 .sensor-card:nth-child(2){animation-delay:0.1s}
 .sensor-card:nth-child(3){animation-delay:0.15s}
 .sensor-card:nth-child(4){animation-delay:0.2s}
 .sensor-card:nth-child(5){animation-delay:0.25s}
 
-/* Badge compteur de points */
-.chart-counter {
-  font-size: 11px; color: var(--muted); font-weight: 500;
-  background: var(--blue-pale); color: var(--blue);
-  padding: 3px 10px; border-radius: 100px;
-  display: inline-block; margin-bottom: 10px;
-}
-
 @media(max-width:1100px){
   .sensor-grid   { grid-template-columns:repeat(3,1fr); }
-  .sensor-charts-grid { grid-template-columns:1fr; }
   .mid-row       { grid-template-columns:1fr 1fr; }
   .mid-row .main-chart-card { grid-column:1/-1; }
   .bottom-row    { grid-template-columns:1fr; }
@@ -190,6 +427,7 @@ tbody tr:hover td { background:rgba(79,124,255,0.03); }
 
 <div class="app">
 
+  <!-- HEADER -->
   <div class="header">
     <div class="brand">
       <div class="brand-icon">🌤️</div>
@@ -199,53 +437,79 @@ tbody tr:hover td { background:rgba(79,124,255,0.03); }
       </div>
     </div>
     <div class="header-badges">
-      <div class="badge-live"><div class="live-dot"></div>Connecté</div>
+      <div class="badge-live">
+        <div class="live-dot"></div>
+        Connecté
+      </div>
       <div class="badge-time" id="lastUpdate">--:--:--</div>
     </div>
   </div>
 
   <!-- SENSOR CARDS -->
   <div class="sensor-grid">
+
     <div class="glass sensor-card sc-temp">
       <div class="card-bg-icon">🌡️</div>
-      <div class="sc-top"><div class="sc-label">Température</div><div class="sc-icon">🌡️</div></div>
+      <div class="sc-top">
+        <div class="sc-label">Température</div>
+        <div class="sc-icon">🌡️</div>
+      </div>
       <div class="sc-val"><span id="temp">--</span><span class="sc-unit">°C</span></div>
       <div class="sc-status" id="tempStatus">— —</div>
     </div>
+
     <div class="glass sensor-card sc-hum">
       <div class="card-bg-icon">💧</div>
-      <div class="sc-top"><div class="sc-label">Humidité</div><div class="sc-icon">💧</div></div>
+      <div class="sc-top">
+        <div class="sc-label">Humidité</div>
+        <div class="sc-icon">💧</div>
+      </div>
       <div class="sc-val"><span id="hum">--</span><span class="sc-unit">%</span></div>
       <div class="sc-status" id="humStatus">— —</div>
     </div>
+
     <div class="glass sensor-card sc-light">
       <div class="card-bg-icon">☀️</div>
-      <div class="sc-top"><div class="sc-label">Luminosité</div><div class="sc-icon">☀️</div></div>
+      <div class="sc-top">
+        <div class="sc-label">Luminosité</div>
+        <div class="sc-icon">☀️</div>
+      </div>
       <div class="sc-val"><span id="light">--</span><span class="sc-unit">%</span></div>
       <div class="sc-status" id="lightStatus">— —</div>
     </div>
+
     <div class="glass sensor-card sc-rain">
       <div class="card-bg-icon">🌧️</div>
-      <div class="sc-top"><div class="sc-label">Pluie</div><div class="sc-icon">🌧️</div></div>
+      <div class="sc-top">
+        <div class="sc-label">Pluie</div>
+        <div class="sc-icon">🌧️</div>
+      </div>
       <div class="sc-val" style="font-size:26px;letter-spacing:-0.5px;"><span id="rainVal">--</span></div>
       <div class="sc-status" id="rainStatus">— —</div>
     </div>
+
     <div class="glass sensor-card sc-wind">
       <div class="card-bg-icon">💨</div>
-      <div class="sc-top"><div class="sc-label">Vent</div><div class="sc-icon">💨</div></div>
+      <div class="sc-top">
+        <div class="sc-label">Vent</div>
+        <div class="sc-icon">💨</div>
+      </div>
       <div class="sc-val"><span id="wind">--</span><span class="sc-unit">m/s</span></div>
       <div class="sc-status" id="windStatus">— —</div>
     </div>
+
   </div>
 
-  <!-- MID ROW -->
+  <!-- MID ROW: chart + donut + rain -->
   <div class="mid-row">
+
+    <!-- Main Chart -->
     <div class="glass main-chart-card">
       <div class="card-title">📈 Évolution en temps réel</div>
-      <div class="card-sub">Toutes les mesures accumulées depuis le démarrage · mise à jour continue</div>
+      <div class="card-sub">20 dernières mesures · mis à jour automatiquement</div>
       <div class="chart-legend">
         <span class="legend-item"><span class="legend-swatch" style="background:#ff7043"></span>Température</span>
-        <span class="legend-item"><span class="legend-swatch" style="background:#06c0d9"></span>Humidité</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:#06c0d9;border-top:2px dashed #06c0d9;background:none;border-bottom:2px dashed #06c0d9;height:0;width:20px;margin:2px 0"></span>Humidité</span>
         <span class="legend-item"><span class="legend-swatch" style="background:#ffb300"></span>Luminosité</span>
         <span class="legend-item"><span class="legend-swatch" style="background:#845ef7"></span>Vent</span>
       </div>
@@ -253,6 +517,8 @@ tbody tr:hover td { background:rgba(79,124,255,0.03); }
         <canvas id="mainChart" role="img" aria-label="Courbes température humidité luminosité et vent">Données en temps réel.</canvas>
       </div>
     </div>
+
+    <!-- Donut comfort -->
     <div class="glass donut-card">
       <div class="card-title" style="align-self:flex-start">🎯 Score de confort</div>
       <div class="donut-wrap">
@@ -277,13 +543,20 @@ tbody tr:hover td { background:rgba(79,124,255,0.03); }
         </div>
       </div>
     </div>
+
+    <!-- Rain detail -->
     <div class="glass rain-card">
       <div class="card-title">🌧️ Précipitations</div>
       <div class="rain-big" id="rainBig" style="color:var(--blue)">--</div>
       <div class="rain-sub" id="rainDesc">En attente...</div>
       <div class="rain-bar-wrap">
-        <div class="rain-bar-label"><span>Intensité</span><span id="rainPct">0%</span></div>
-        <div class="rain-track"><div class="rain-fill" id="rainFill" style="width:0%"></div></div>
+        <div class="rain-bar-label">
+          <span>Intensité</span>
+          <span id="rainPct">0%</span>
+        </div>
+        <div class="rain-track">
+          <div class="rain-fill" id="rainFill" style="width:0%"></div>
+        </div>
       </div>
       <div style="margin-top:20px;">
         <div class="card-title" style="font-size:13px;margin-bottom:10px">Vent actuel</div>
@@ -291,136 +564,161 @@ tbody tr:hover td { background:rgba(79,124,255,0.03); }
         <div id="windDesc" style="font-size:12px;color:var(--muted);margin-top:4px">—</div>
       </div>
     </div>
-  </div>
 
-  <!-- GRAPHIQUES DÉTAILLÉS PAR CAPTEUR (courbes continues accumulées) -->
-  <div style="margin-bottom:20px;">
-    <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px;">📊 Graphiques détaillés par capteur</div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">Courbe continue — chaque nouvelle valeur est ajoutée à la courbe sans effacer l'historique</div>
-    <div class="sensor-charts-grid">
-
-      <div class="glass sensor-detail-chart">
-        <div class="card-title">🌡️ Température</div>
-        <span class="chart-counter" id="cntTemp">0 points</span>
-        <div style="position:relative;width:100%;height:200px;">
-          <canvas id="tempChart" role="img" aria-label="Courbe continue température">Courbe température.</canvas>
-        </div>
-      </div>
-
-      <div class="glass sensor-detail-chart">
-        <div class="card-title">💧 Humidité</div>
-        <span class="chart-counter" id="cntHum">0 points</span>
-        <div style="position:relative;width:100%;height:200px;">
-          <canvas id="humChart" role="img" aria-label="Courbe continue humidité">Courbe humidité.</canvas>
-        </div>
-      </div>
-
-      <div class="glass sensor-detail-chart">
-        <div class="card-title">☀️ Luminosité</div>
-        <span class="chart-counter" id="cntLight">0 points</span>
-        <div style="position:relative;width:100%;height:200px;">
-          <canvas id="lightChart" role="img" aria-label="Courbe continue luminosité">Courbe luminosité.</canvas>
-        </div>
-      </div>
-
-      <div class="glass sensor-detail-chart">
-        <div class="card-title">💨 Vent</div>
-        <span class="chart-counter" id="cntWind">0 points</span>
-        <div style="position:relative;width:100%;height:200px;">
-          <canvas id="windChart" role="img" aria-label="Courbe continue vent">Courbe vent.</canvas>
-        </div>
-      </div>
-
-    </div>
   </div>
 
   <!-- GAUGES -->
   <div class="gauge-row">
+
     <div class="glass gauge-card">
       <div class="card-title">🌡️ Température</div>
       <div class="half-gauge-wrap">
         <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="gT" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ffb300"/><stop offset="50%" stop-color="#ff7043"/><stop offset="100%" stop-color="#ff4d6d"/></linearGradient></defs>
+          <defs>
+            <linearGradient id="gT" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#ffb300"/>
+              <stop offset="50%" stop-color="#ff7043"/>
+              <stop offset="100%" stop-color="#ff4d6d"/>
+            </linearGradient>
+          </defs>
           <path d="M18,98 A82,82,0,0,1,182,98" fill="none" stroke="#eef0f8" stroke-width="14" stroke-linecap="round"/>
-          <path id="gaugeTempPath" d="M18,98 A82,82,0,0,1,182,98" fill="none" stroke="url(#gT)" stroke-width="14" stroke-linecap="round" stroke-dasharray="257" stroke-dashoffset="257" style="transition:stroke-dashoffset 1s cubic-bezier(0.4,0,0.2,1)"/>
+          <path id="gaugeTempPath" d="M18,98 A82,82,0,0,1,182,98" fill="none" stroke="url(#gT)" stroke-width="14" stroke-linecap="round"
+            stroke-dasharray="257" stroke-dashoffset="257" style="transition:stroke-dashoffset 1s cubic-bezier(0.4,0,0.2,1)"/>
         </svg>
-        <div class="gauge-label-center"><div class="gauge-main-val" id="gTempVal" style="color:var(--orange)">--</div><div class="gauge-main-unit">°C</div></div>
+        <div class="gauge-label-center">
+          <div class="gauge-main-val" id="gTempVal" style="color:var(--orange)">--</div>
+          <div class="gauge-main-unit">°C</div>
+        </div>
       </div>
       <div class="gauge-range"><span>0°C</span><span>50°C</span></div>
     </div>
+
     <div class="glass gauge-card">
       <div class="card-title">💧 Humidité</div>
       <div class="half-gauge-wrap">
         <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="gH" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#4f7cff"/><stop offset="100%" stop-color="#06c0d9"/></linearGradient></defs>
+          <defs>
+            <linearGradient id="gH" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#4f7cff"/>
+              <stop offset="100%" stop-color="#06c0d9"/>
+            </linearGradient>
+          </defs>
           <path d="M18,98 A82,82,0,0,1,182,98" fill="none" stroke="#eef0f8" stroke-width="14" stroke-linecap="round"/>
-          <path id="gaugeHumPath" d="M18,98 A82,82,0,0,1,182,98" fill="none" stroke="url(#gH)" stroke-width="14" stroke-linecap="round" stroke-dasharray="257" stroke-dashoffset="257" style="transition:stroke-dashoffset 1s cubic-bezier(0.4,0,0.2,1)"/>
+          <path id="gaugeHumPath" d="M18,98 A82,82,0,0,1,182,98" fill="none" stroke="url(#gH)" stroke-width="14" stroke-linecap="round"
+            stroke-dasharray="257" stroke-dashoffset="257" style="transition:stroke-dashoffset 1s cubic-bezier(0.4,0,0.2,1)"/>
         </svg>
-        <div class="gauge-label-center"><div class="gauge-main-val" id="gHumVal" style="color:var(--cyan)">--</div><div class="gauge-main-unit">%</div></div>
+        <div class="gauge-label-center">
+          <div class="gauge-main-val" id="gHumVal" style="color:var(--cyan)">--</div>
+          <div class="gauge-main-unit">%</div>
+        </div>
       </div>
       <div class="gauge-range"><span>0%</span><span>100%</span></div>
     </div>
+
     <div class="glass gauge-card">
       <div class="card-title">☀️ Luminosité</div>
       <div class="half-gauge-wrap">
         <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="gL" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ffb300"/><stop offset="100%" stop-color="#ff7043"/></linearGradient></defs>
+          <defs>
+            <linearGradient id="gL" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#ffb300"/>
+              <stop offset="100%" stop-color="#ff7043"/>
+            </linearGradient>
+          </defs>
           <path d="M18,98 A82,82,0,0,1,182,98" fill="none" stroke="#eef0f8" stroke-width="14" stroke-linecap="round"/>
-          <path id="gaugeLightPath" d="M18,98 A82,82,0,0,1,182,98" fill="none" stroke="url(#gL)" stroke-width="14" stroke-linecap="round" stroke-dasharray="257" stroke-dashoffset="257" style="transition:stroke-dashoffset 1s cubic-bezier(0.4,0,0.2,1)"/>
+          <path id="gaugeLightPath" d="M18,98 A82,82,0,0,1,182,98" fill="none" stroke="url(#gL)" stroke-width="14" stroke-linecap="round"
+            stroke-dasharray="257" stroke-dashoffset="257" style="transition:stroke-dashoffset 1s cubic-bezier(0.4,0,0.2,1)"/>
         </svg>
-        <div class="gauge-label-center"><div class="gauge-main-val" id="gLightVal" style="color:var(--yellow)">--</div><div class="gauge-main-unit">%</div></div>
+        <div class="gauge-label-center">
+          <div class="gauge-main-val" id="gLightVal" style="color:var(--yellow)">--</div>
+          <div class="gauge-main-unit">%</div>
+        </div>
       </div>
       <div class="gauge-range"><span>0%</span><span>100%</span></div>
     </div>
+
   </div>
 
-  <!-- BOTTOM -->
+  <!-- BOTTOM: history + stats -->
   <div class="bottom-row">
+
     <div class="glass history-card">
       <div class="card-title">📋 Historique des mesures</div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Heure</th><th>Température</th><th>Humidité</th><th>Luminosité</th><th>Vent</th><th>Pluie</th><th>Confort</th></tr></thead>
-          <tbody id="histBody"><tr><td colspan="7" style="text-align:center;color:var(--muted);padding:24px">Chargement des données...</td></tr></tbody>
+          <thead>
+            <tr>
+              <th>Heure</th>
+              <th>Température</th>
+              <th>Humidité</th>
+              <th>Luminosité</th>
+              <th>Vent</th>
+              <th>Pluie</th>
+              <th>Confort</th>
+            </tr>
+          </thead>
+          <tbody id="histBody">
+            <tr><td colspan="7" style="text-align:center;color:var(--muted);padding:24px">Chargement des données...</td></tr>
+          </tbody>
         </table>
       </div>
     </div>
+
     <div class="glass stats-card">
       <div class="card-title" style="margin-bottom:4px">📊 Statistiques</div>
       <div class="card-sub" style="margin-bottom:16px">Session en cours</div>
+
       <div class="stat-item">
-        <div class="stat-left"><div class="stat-icon" style="background:var(--orange-pale)">🔺</div><div class="stat-name">Temp. max</div></div>
+        <div class="stat-left">
+          <div class="stat-icon" style="background:var(--orange-pale)">🔺</div>
+          <div class="stat-name">Temp. max</div>
+        </div>
         <div class="stat-val" id="sMaxT">--</div>
       </div>
       <div class="stat-item">
-        <div class="stat-left"><div class="stat-icon" style="background:var(--cyan-pale)">🔻</div><div class="stat-name">Temp. min</div></div>
+        <div class="stat-left">
+          <div class="stat-icon" style="background:var(--cyan-pale)">🔻</div>
+          <div class="stat-name">Temp. min</div>
+        </div>
         <div class="stat-val" id="sMinT">--</div>
       </div>
       <div class="stat-item">
-        <div class="stat-left"><div class="stat-icon" style="background:#f3effe">📊</div><div class="stat-name">Moy. temp</div></div>
+        <div class="stat-left">
+          <div class="stat-icon" style="background:#f3effe">📊</div>
+          <div class="stat-name">Moy. temp</div>
+        </div>
         <div class="stat-val" id="sAvgT">--</div>
       </div>
       <div class="stat-item">
-        <div class="stat-left"><div class="stat-icon" style="background:var(--cyan-pale)">💧</div><div class="stat-name">Hum. moy.</div></div>
+        <div class="stat-left">
+          <div class="stat-icon" style="background:var(--cyan-pale)">💧</div>
+          <div class="stat-name">Hum. moy.</div>
+        </div>
         <div class="stat-val" id="sAvgH">--</div>
       </div>
       <div class="stat-item">
-        <div class="stat-left"><div class="stat-icon" style="background:var(--purple-pale)">💨</div><div class="stat-name">Vent max</div></div>
+        <div class="stat-left">
+          <div class="stat-icon" style="background:var(--purple-pale)">💨</div>
+          <div class="stat-name">Vent max</div>
+        </div>
         <div class="stat-val" id="sMaxW">--</div>
       </div>
       <div class="stat-item">
-        <div class="stat-left"><div class="stat-icon" style="background:var(--blue-pale)">📡</div><div class="stat-name">Points accumulés</div></div>
+        <div class="stat-left">
+          <div class="stat-icon" style="background:var(--blue-pale)">📡</div>
+          <div class="stat-name">Mesures reçues</div>
+        </div>
         <div class="stat-val" id="sCount">0</div>
       </div>
     </div>
-  </div>
 
+  </div>
 </div>
 
 <script>
 // ===== FIREBASE =====
 const firebaseConfig = {
-  apiKey: "AIzaSyDwlgii9n68q3cL_Nt_zYaUCp6BInjimUU",
+  apiKey: "AIZasYwLgiI9n6o3cL_Nt_zYaUCp6BInjImUU",
   authDomain: "station-meteo-iot-213ac.firebaseapp.com",
   databaseURL: "https://station-meteo-iot-213ac-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "station-meteo-iot-213ac",
@@ -431,134 +729,53 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// ===== HISTORIQUE ACCUMULÉ PAR CAPTEUR =====
-// Chaque tableau grandit à chaque nouvelle valeur reçue — jamais réinitialisé
-const history = {
-  labels: [],   // horodatages communs
-  temp:  [],
-  hum:   [],
-  light: [],
-  wind:  []
-};
-
-// Clé de déduplication : dernier snapshot Firebase traité
-let lastSnapshotSize = 0;
-const MAX_POINTS = 2000; // limite mémoire (rogner les anciens si dépassé)
-
 // ===== CHARTS =====
-let mainChart, donutChart, tempChart, humChart, lightChart, windChart;
-
-function makeLineChart(canvasId, label, color) {
-  const ctx = document.getElementById(canvasId).getContext('2d');
-  return new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: [],
-      datasets: [{
-        label: label,
-        data: [],
-        borderColor: color,
-        backgroundColor: color.replace(')', ', 0.18)').replace('rgb', 'rgba'),
-        tension: 0.4,
-        fill: true,
-        pointRadius: 0,
-        pointHoverRadius: 4,
-        borderWidth: 2.5,
-        spanGaps: true
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: 'rgba(255,255,255,0.95)',
-          titleColor: '#1e2a4a',
-          bodyColor: '#1e2a4a',
-          borderColor: 'rgba(79,124,255,0.2)',
-          borderWidth: 1,
-          padding: 10
-        }
-      },
-      scales: {
-        x: {
-          ticks: {
-            color: '#8896b3', font: { size: 9 },
-            maxRotation: 0,
-            maxTicksLimit: 10,
-            autoSkip: true
-          },
-          grid: { color: 'rgba(0,0,0,0.04)' }
-        },
-        y: {
-          ticks: { color: '#8896b3', font: { size: 10 } },
-          grid: { color: 'rgba(0,0,0,0.04)' }
-        }
-      },
-      animation: { duration: 0 }
-    }
-  });
-}
+let mainChart, donutChart;
 
 function initCharts() {
-  // Graphique principal multi-séries
   const c1 = document.getElementById('mainChart').getContext('2d');
   mainChart = new Chart(c1, {
     type: 'line',
     data: {
       labels: [],
       datasets: [
-        { label:'Temp °C',  data:[], borderColor:'#ff7043', backgroundColor:'rgba(255,112,67,0.12)', tension:0.4, fill:true,  pointRadius:0, borderWidth:2.5, spanGaps:true },
-        { label:'Hum %',    data:[], borderColor:'#06c0d9', backgroundColor:'rgba(6,192,217,0.10)',  tension:0.4, fill:true,  pointRadius:0, borderWidth:2.5, spanGaps:true },
-        { label:'Lum %',    data:[], borderColor:'#ffb300', backgroundColor:'rgba(255,179,0,0.08)',  tension:0.4, fill:false, pointRadius:0, borderWidth:2,   spanGaps:true },
-        { label:'Vent m/s', data:[], borderColor:'#845ef7', backgroundColor:'rgba(132,94,247,0.08)', tension:0.4, fill:false, pointRadius:0, borderWidth:2,   spanGaps:true }
+        { label:'Temp °C',   data:[], borderColor:'#ff7043', backgroundColor:'rgba(255,112,67,0.08)', tension:0.45, fill:true,  pointRadius:3, pointBackgroundColor:'#ff7043', borderWidth:2.5, borderDash:[] },
+        { label:'Hum %',     data:[], borderColor:'#06c0d9', backgroundColor:'rgba(6,192,217,0.06)',  tension:0.45, fill:true,  pointRadius:3, pointBackgroundColor:'#06c0d9', borderWidth:2,   borderDash:[5,4] },
+        { label:'Lum %',     data:[], borderColor:'#ffb300', backgroundColor:'rgba(255,179,0,0.05)',  tension:0.45, fill:false, pointRadius:2, pointBackgroundColor:'#ffb300', borderWidth:2,   borderDash:[] },
+        { label:'Vent m/s',  data:[], borderColor:'#845ef7', backgroundColor:'rgba(132,94,247,0.05)', tension:0.45, fill:false, pointRadius:2, pointBackgroundColor:'#845ef7', borderWidth:1.5, borderDash:[3,3] }
       ]
     },
     options: {
       responsive:true, maintainAspectRatio:false,
-      interaction: { mode:'index', intersect:false },
-      plugins: {
-        legend: { display:false },
-        tooltip: { backgroundColor:'rgba(255,255,255,0.95)', titleColor:'#1e2a4a', bodyColor:'#1e2a4a', borderColor:'rgba(79,124,255,0.2)', borderWidth:1 }
+      plugins:{ legend:{ display:false } },
+      scales:{
+        x:{ ticks:{ color:'#8896b3',font:{size:10},maxRotation:0 }, grid:{ color:'rgba(0,0,0,0.04)' }, border:{color:'rgba(0,0,0,0.06)'} },
+        y:{ ticks:{ color:'#8896b3',font:{size:10} }, grid:{ color:'rgba(0,0,0,0.04)' }, border:{color:'rgba(0,0,0,0.06)'} }
       },
-      scales: {
-        x: { ticks:{ color:'#8896b3', font:{size:9}, maxTicksLimit:8, autoSkip:true, maxRotation:0 }, grid:{ color:'rgba(0,0,0,0.04)' } },
-        y: { ticks:{ color:'#8896b3', font:{size:10} }, grid:{ color:'rgba(0,0,0,0.04)' } }
-      },
-      animation: { duration:0 }
+      animation:{ duration:500 }
     }
   });
 
-  // Graphiques détaillés par capteur
-  tempChart  = makeLineChart('tempChart',  'Température °C', '#ff7043');
-  humChart   = makeLineChart('humChart',   'Humidité %',     '#06c0d9');
-  lightChart = makeLineChart('lightChart', 'Luminosité %',   '#ffb300');
-  windChart  = makeLineChart('windChart',  'Vent m/s',       '#845ef7');
-
-  // Donut
   const c2 = document.getElementById('donutChart').getContext('2d');
   donutChart = new Chart(c2, {
     type:'doughnut',
-    data:{ labels:['Idéal','Chaud','Humide'], datasets:[{ data:[50,25,25], backgroundColor:['#00c48c','#ff7043','#4f7cff'], borderColor:'#ffffff', borderWidth:3, hoverOffset:6 }] },
-    options:{ responsive:true, maintainAspectRatio:true, cutout:'72%', plugins:{ legend:{ display:false } }, animation:{ duration:700 } }
+    data:{
+      labels:['Idéal','Chaud','Humide'],
+      datasets:[{
+        data:[50,25,25],
+        backgroundColor:['#00c48c','#ff7043','#4f7cff'],
+        borderColor:'#ffffff',
+        borderWidth:3,
+        hoverOffset:6
+      }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:true,
+      cutout:'72%',
+      plugins:{ legend:{ display:false } },
+      animation:{ duration:700 }
+    }
   });
-}
-
-// ===== MISE À JOUR D'UN GRAPHIQUE INDIVIDUEL =====
-function pushToChart(chart, label, value, counterId) {
-  chart.data.labels.push(label);
-  chart.data.datasets[0].data.push(value);
-  // Rogner si trop de points
-  if (chart.data.labels.length > MAX_POINTS) {
-    chart.data.labels.shift();
-    chart.data.datasets[0].data.shift();
-  }
-  chart.update('none');
-  if (counterId) {
-    document.getElementById(counterId).textContent = chart.data.labels.length + ' points';
-  }
 }
 
 // ===== GAUGE =====
@@ -569,165 +786,161 @@ function setGauge(pathId, val, min, max) {
 }
 
 // ===== HELPERS =====
-function tempInfo(v)  { if(v<10) return['❄️ Froid','pill-blue']; if(v<20) return['🍂 Frais','pill-cyan']; if(v<30) return['☀️ Agréable','pill-green']; return['🔥 Chaud','pill-orange']; }
-function humInfo(v)   { if(v<30) return['🏜️ Sec','pill-yellow']; if(v<60) return['😊 Confortable','pill-green']; return['💧 Humide','pill-blue']; }
-function lightInfo(v) { if(v<10) return['🌙 Nuit','pill-purple']; if(v<40) return['🌅 Aurore','pill-yellow']; if(v<70) return['☁️ Nuageux','pill-cyan']; return['☀️ Lumineux','pill-orange']; }
-function windInfo(v)  { if(v<1) return['🍃 Calme','pill-green']; if(v<5) return['🌊 Brise','pill-cyan']; if(v<10) return['🌬️ Modéré','pill-orange']; return['💨 Fort','pill-red']; }
-function rainInfo(v)  { if(v==null) return['--','--','pill-blue',0]; if(v<500) return['Intense','🌧️ Pluie intense','pill-red',100]; if(v<1500) return['Modérée','☔ Pluie modérée','pill-orange',60]; if(v<3000) return['Humide','💧 Humidité','pill-cyan',30]; return['Sec','✅ Pas de pluie','pill-green',5]; }
-function comfort(t,h) { let s=100; if(t<18) s-=(18-t)*3; else if(t>28) s-=(t-28)*4; if(h<30) s-=(30-h)*0.5; else if(h>65) s-=(h-65)*0.8; return Math.max(0,Math.min(100,Math.round(s))); }
+function tempInfo(v) {
+  if (v < 10) return ['❄️ Froid','pill-blue'];
+  if (v < 20) return ['🍂 Frais','pill-cyan'];
+  if (v < 30) return ['☀️ Agréable','pill-green'];
+  return ['🔥 Chaud','pill-orange'];
+}
+function humInfo(v) {
+  if (v < 30) return ['🏜️ Sec','pill-yellow'];
+  if (v < 60) return ['😊 Confortable','pill-green'];
+  return ['💧 Humide','pill-blue'];
+}
+function lightInfo(v) {
+  if (v < 10) return ['🌙 Nuit','pill-purple'];
+  if (v < 40) return ['🌅 Aurore','pill-yellow'];
+  if (v < 70) return ['☁️ Nuageux','pill-cyan'];
+  return ['☀️ Lumineux','pill-orange'];
+}
+function windInfo(v) {
+  if (v < 1)  return ['🍃 Calme','pill-green'];
+  if (v < 5)  return ['🌊 Brise','pill-cyan'];
+  if (v < 10) return ['🌬️ Modéré','pill-orange'];
+  return ['💨 Fort','pill-red'];
+}
+function rainInfo(v) {
+  if (v == null) return ['--','--','pill-blue',0];
+  if (v < 500)   return ['Intense','🌧️ Pluie intense','pill-red',100];
+  if (v < 1500)  return ['Modérée','☔ Pluie modérée','pill-orange',60];
+  if (v < 3000)  return ['Humide','💧 Humidité','pill-cyan',30];
+  return ['Sec','✅ Pas de pluie','pill-green',5];
+}
+function comfort(t,h) {
+  let s = 100;
+  if (t < 18) s -= (18-t)*3; else if (t > 28) s -= (t-28)*4;
+  if (h < 30) s -= (30-h)*0.5; else if (h > 65) s -= (h-65)*0.8;
+  return Math.max(0,Math.min(100,Math.round(s)));
+}
 
-// ===== TRAITEMENT DU SNAPSHOT FIREBASE =====
-// Appelé à chaque réception de données — seules les NOUVELLES entrées sont ajoutées aux courbes
-function processSnapshot(data) {
+// ===== UPDATE =====
+function updateAll(data) {
   if (!data.length) return;
+  const L = data[data.length-1];
+  const T = L.temperature ?? null;
+  const H = L.humidity ?? null;
+  const Lt = L.light ?? null;
+  const W = L.wind ?? null;
+  const R = L.rain ?? null;
 
-  // Nouvelles entrées depuis le dernier traitement
-  const newEntries = data.slice(lastSnapshotSize);
-  lastSnapshotSize = data.length;
+  // Top cards
+  document.getElementById('temp').textContent  = T!=null ? T.toFixed(1) : '--';
+  document.getElementById('hum').textContent   = H!=null ? Math.round(H) : '--';
+  document.getElementById('light').textContent = Lt!=null ? Math.round(Lt) : '--';
+  document.getElementById('wind').textContent  = W!=null ? W.toFixed(1) : '--';
 
-  // Ajouter les nouvelles valeurs aux historiques
-  newEntries.forEach((d, idx) => {
-    const globalIdx = data.length - newEntries.length + idx;
-    const ts = d.timestamp
-      ? new Date(d.timestamp).toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit', second:'2-digit'})
-      : new Date().toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-
-    // Graphiques individuels — on ne push QUE si la valeur a changé (ou premier point)
-    const prevT = history.temp.length   ? history.temp[history.temp.length-1]   : undefined;
-    const prevH = history.hum.length    ? history.hum[history.hum.length-1]     : undefined;
-    const prevL = history.light.length  ? history.light[history.light.length-1] : undefined;
-    const prevW = history.wind.length   ? history.wind[history.wind.length-1]   : undefined;
-
-    const T  = d.temperature ?? null;
-    const H  = d.humidity    ?? null;
-    const Lt = d.light       ?? null;
-    const W  = d.wind        ?? null;
-
-    // On pousse TOUJOURS chaque nouvelle entrée pour avoir une courbe continue
-    history.labels.push(ts);
-    history.temp.push(T);
-    history.hum.push(H);
-    history.light.push(Lt);
-    history.wind.push(W);
-
-    // Mise à jour des graphiques individuels avec la nouvelle valeur
-    if (T  !== null) pushToChart(tempChart,  ts, T,  'cntTemp');
-    if (H  !== null) pushToChart(humChart,   ts, H,  'cntHum');
-    if (Lt !== null) pushToChart(lightChart, ts, Lt, 'cntLight');
-    if (W  !== null) pushToChart(windChart,  ts, W,  'cntWind');
-  });
-
-  // Graphique principal — reconstruction depuis l'historique complet
-  const mainLabels = history.labels.slice(-MAX_POINTS);
-  mainChart.data.labels              = mainLabels;
-  mainChart.data.datasets[0].data    = history.temp.slice(-MAX_POINTS);
-  mainChart.data.datasets[1].data    = history.hum.slice(-MAX_POINTS);
-  mainChart.data.datasets[2].data    = history.light.slice(-MAX_POINTS);
-  mainChart.data.datasets[3].data    = history.wind.slice(-MAX_POINTS);
-  mainChart.update('none');
-
-  // === Mise à jour du reste de l'UI (cartes, jauges, stats, historique) ===
-  const L  = data[data.length-1];
-  const T2 = L.temperature ?? null;
-  const H2 = L.humidity    ?? null;
-  const Lt2= L.light       ?? null;
-  const W2 = L.wind        ?? null;
-  const R  = L.rain        ?? null;
-
-  document.getElementById('temp').textContent  = T2  != null ? T2.toFixed(1)  : '--';
-  document.getElementById('hum').textContent   = H2  != null ? Math.round(H2) : '--';
-  document.getElementById('light').textContent = Lt2 != null ? Math.round(Lt2): '--';
-  document.getElementById('wind').textContent  = W2  != null ? W2.toFixed(1)  : '--';
-
-  const [rLabel] = rainInfo(R);
+  const [rLabel,,] = rainInfo(R);
   document.getElementById('rainVal').textContent = rLabel;
 
-  if (T2  != null){ const [ts2]=tempInfo(T2);   document.getElementById('tempStatus').textContent=ts2; }
-  if (H2  != null){ const [hs]=humInfo(H2);      document.getElementById('humStatus').textContent=hs; }
-  if (Lt2 != null){ const [ls]=lightInfo(Lt2);   document.getElementById('lightStatus').textContent=ls; }
-  if (W2  != null){ const [ws]=windInfo(W2);     document.getElementById('windStatus').textContent=ws; }
+  if (T!=null){const [ts]=tempInfo(T); document.getElementById('tempStatus').textContent=ts;}
+  if (H!=null){const [hs]=humInfo(H);  document.getElementById('humStatus').textContent=hs;}
+  if (Lt!=null){const [ls]=lightInfo(Lt);document.getElementById('lightStatus').textContent=ls;}
+  if (W!=null){const [ws]=windInfo(W); document.getElementById('windStatus').textContent=ws;}
   const [,rs]=rainInfo(R); document.getElementById('rainStatus').textContent=rs;
 
-  // Jauges
-  if (T2  != null){ setGauge('gaugeTempPath',T2,0,50);   document.getElementById('gTempVal').textContent=T2.toFixed(1); }
-  if (H2  != null){ setGauge('gaugeHumPath',H2,0,100);   document.getElementById('gHumVal').textContent=Math.round(H2); }
-  if (Lt2 != null){ setGauge('gaugeLightPath',Lt2,0,100);document.getElementById('gLightVal').textContent=Math.round(Lt2); }
+  // Gauges
+  if (T!=null){ setGauge('gaugeTempPath',T,0,50); document.getElementById('gTempVal').textContent=T.toFixed(1); }
+  if (H!=null){ setGauge('gaugeHumPath',H,0,100); document.getElementById('gHumVal').textContent=Math.round(H); }
+  if (Lt!=null){ setGauge('gaugeLightPath',Lt,0,100); document.getElementById('gLightVal').textContent=Math.round(Lt); }
 
-  // Barre pluie
+  // Rain bar
   const [,,, rainPctVal] = rainInfo(R);
-  document.getElementById('rainBig').textContent  = rLabel;
+  document.getElementById('rainBig').textContent = rLabel;
   document.getElementById('rainDesc').textContent = rainInfo(R)[1];
-  document.getElementById('rainPct').textContent  = rainPctVal+'%';
-  document.getElementById('rainFill').style.width = rainPctVal+'%';
+  document.getElementById('rainPct').textContent = rainPctVal + '%';
+  document.getElementById('rainFill').style.width = rainPctVal + '%';
 
-  // Vent
-  document.getElementById('windBig').textContent = W2 != null ? W2.toFixed(1) : '--';
-  if (W2 != null){ const [ws]=windInfo(W2); document.getElementById('windDesc').textContent=ws; }
+  // Wind big
+  document.getElementById('windBig').textContent = W!=null ? W.toFixed(1) : '--';
+  if(W!=null){ const[ws]=windInfo(W); document.getElementById('windDesc').textContent=ws; }
 
-  // Donut confort
-  if (T2 != null && H2 != null) {
-    const sc = comfort(T2,H2);
+  // Donut
+  if (T!=null && H!=null) {
+    const sc = comfort(T,H);
     document.getElementById('comfortScore').textContent = sc;
-    const ideal = Math.max(5, 100 - Math.abs(T2-22)*2 - Math.abs(H2-50)*0.5);
-    const hot   = T2>26 ? Math.min(60,(T2-26)*8) : 5;
-    const humid = H2>60 ? Math.min(60,(H2-60)*1.5) : 5;
-    const tot   = ideal+hot+humid;
-    const d2 = [Math.round(ideal/tot*100), Math.round(hot/tot*100), Math.round(humid/tot*100)];
-    donutChart.data.datasets[0].data = d2;
+    const ideal  = Math.max(5, 100 - Math.abs(T-22)*2 - Math.abs(H-50)*0.5);
+    const hot    = T>26 ? Math.min(60,(T-26)*8) : 5;
+    const humid  = H>60 ? Math.min(60,(H-60)*1.5) : 5;
+    const tot    = ideal+hot+humid;
+    const d = [Math.round(ideal/tot*100), Math.round(hot/tot*100), Math.round(humid/tot*100)];
+    donutChart.data.datasets[0].data = d;
     donutChart.update('none');
-    document.getElementById('dl1').textContent = d2[0]+'%';
-    document.getElementById('dl2').textContent = d2[1]+'%';
-    document.getElementById('dl3').textContent = d2[2]+'%';
+    document.getElementById('dl1').textContent = d[0]+'%';
+    document.getElementById('dl2').textContent = d[1]+'%';
+    document.getElementById('dl3').textContent = d[2]+'%';
   }
 
   // Stats
-  const ts_arr = data.map(d=>d.temperature).filter(v=>v!=null);
-  const hs_arr = data.map(d=>d.humidity).filter(v=>v!=null);
-  const ws_arr = data.map(d=>d.wind).filter(v=>v!=null);
-  if (ts_arr.length){
-    document.getElementById('sMaxT').textContent = Math.max(...ts_arr).toFixed(1)+'°C';
-    document.getElementById('sMinT').textContent = Math.min(...ts_arr).toFixed(1)+'°C';
-    document.getElementById('sAvgT').textContent = (ts_arr.reduce((a,b)=>a+b)/ts_arr.length).toFixed(1)+'°C';
+  const ts2  = data.map(d=>d.temperature).filter(v=>v!=null);
+  const hs   = data.map(d=>d.humidity).filter(v=>v!=null);
+  const ws   = data.map(d=>d.wind).filter(v=>v!=null);
+  if(ts2.length){
+    document.getElementById('sMaxT').textContent  = Math.max(...ts2).toFixed(1)+'°C';
+    document.getElementById('sMinT').textContent  = Math.min(...ts2).toFixed(1)+'°C';
+    document.getElementById('sAvgT').textContent  = (ts2.reduce((a,b)=>a+b)/ts2.length).toFixed(1)+'°C';
   }
-  if (hs_arr.length) document.getElementById('sAvgH').textContent = Math.round(hs_arr.reduce((a,b)=>a+b)/hs_arr.length)+'%';
-  if (ws_arr.length) document.getElementById('sMaxW').textContent = Math.max(...ws_arr).toFixed(1)+' m/s';
-  document.getElementById('sCount').textContent = history.temp.length;
+  if(hs.length)  document.getElementById('sAvgH').textContent  = Math.round(hs.reduce((a,b)=>a+b)/hs.length)+'%';
+  if(ws.length)  document.getElementById('sMaxW').textContent  = Math.max(...ws).toFixed(1)+' m/s';
+  document.getElementById('sCount').textContent = data.length;
 
+  // Time
   document.getElementById('lastUpdate').textContent = '🕐 ' + new Date().toLocaleTimeString('fr-FR');
 
-  // Historique tableau
+  // Main chart
+  const now = Date.now();
+  const labels = data.map((_,i) => {
+    const d = new Date(now - (data.length-1-i)*5000);
+    return d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  });
+  mainChart.data.labels = labels;
+  mainChart.data.datasets[0].data = data.map(d=>d.temperature??null);
+  mainChart.data.datasets[1].data = data.map(d=>d.humidity??null);
+  mainChart.data.datasets[2].data = data.map(d=>d.light??null);
+  mainChart.data.datasets[3].data = data.map(d=>d.wind??null);
+  mainChart.update();
+
+  // History
   const tbody = document.getElementById('histBody');
   tbody.innerHTML = '';
-  const now = Date.now();
   data.slice().reverse().slice(0,15).forEach((d,i) => {
     const t = new Date(now - i*5000);
-    const T3=d.temperature; const H3=d.humidity; const L3=d.light; const W3=d.wind; const R3=d.rain;
-    const [rL2,,rB] = rainInfo(R3);
-    const [,tB] = T3!=null?tempInfo(T3):['',''];
-    const [,wB] = W3!=null?windInfo(W3):['',''];
-    const sc2 = comfort(T3??22, H3??50);
-    const scColor = sc2>75?'pill-green':sc2>50?'pill-yellow':'pill-orange';
+    const T2=d.temperature; const H2=d.humidity; const L2=d.light; const W2=d.wind; const R2=d.rain;
+    const [rL,,rB] = rainInfo(R2);
+    const [,tB] = T2!=null?tempInfo(T2):['',''];
+    const [,wB] = W2!=null?windInfo(W2):['',''];
+    const sc = comfort(T2??22,H2??50);
+    const scColor = sc>75?'pill-green':sc>50?'pill-yellow':'pill-orange';
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td style="color:var(--muted);font-size:11px">${t.toLocaleTimeString('fr-FR')}</td>
-      <td><span class="pill ${tB}">${T3!=null?T3.toFixed(1)+'°C':'--'}</span></td>
-      <td>${H3!=null?Math.round(H3)+'%':'--'}</td>
-      <td>${L3!=null?Math.round(L3)+'%':'--'}</td>
-      <td><span class="pill ${wB}">${W3!=null?W3.toFixed(1)+' m/s':'--'}</span></td>
-      <td><span class="pill ${rB}">${rL2}</span></td>
-      <td><span class="pill ${scColor}">${sc2}/100</span></td>`;
+      <td><span class="pill ${tB}">${T2!=null?T2.toFixed(1)+'°C':'--'}</span></td>
+      <td>${H2!=null?Math.round(H2)+'%':'--'}</td>
+      <td>${L2!=null?Math.round(L2)+'%':'--'}</td>
+      <td><span class="pill ${wB}">${W2!=null?W2.toFixed(1)+' m/s':'--'}</span></td>
+      <td><span class="pill ${rB}">${rL}</span></td>
+      <td><span class="pill ${scColor}">${sc}/100</span></td>
+    `;
     tbody.appendChild(tr);
   });
 }
 
-// ===== INIT + ÉCOUTE FIREBASE =====
+// ===== FIREBASE LISTENER =====
 initCharts();
 
-// Écouter les changements en temps réel
-db.ref('/mesures').on('value', snap => {
+db.ref('/mesures').limitToLast(20).on('value', snap => {
   const data = [];
   snap.forEach(child => data.push(child.val()));
-  if (data.length) processSnapshot(data);
+  if (data.length) updateAll(data);
 }, err => {
   console.error(err);
   document.getElementById('lastUpdate').textContent = '⚠️ Erreur connexion';
