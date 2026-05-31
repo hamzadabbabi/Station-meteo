@@ -815,7 +815,8 @@ function initCharts() {
         tension: 0.98,
         fill: true,
         pointRadius: 0,
-        borderWidth: 3.5
+        borderWidth: 3.5,
+        spanGaps: true
       }]
     },
     options: {
@@ -826,7 +827,7 @@ function initCharts() {
         x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
         y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
       },
-      animation: { duration: 100 }
+      animation: { duration: 0 }
     }
   });
 
@@ -844,7 +845,8 @@ function initCharts() {
         tension: 0.98,
         fill: true,
         pointRadius: 0,
-        borderWidth: 3.5
+        borderWidth: 3.5,
+        spanGaps: true
       }]
     },
     options: {
@@ -855,7 +857,7 @@ function initCharts() {
         x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
         y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' }, min: 0, max: 100 }
       },
-      animation: { duration: 100 }
+      animation: { duration: 0 }
     }
   });
 
@@ -873,7 +875,8 @@ function initCharts() {
         tension: 0.98,
         fill: true,
         pointRadius: 0,
-        borderWidth: 3.5
+        borderWidth: 3.5,
+        spanGaps: true
       }]
     },
     options: {
@@ -884,7 +887,7 @@ function initCharts() {
         x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
         y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' }, min: 0, max: 100 }
       },
-      animation: { duration: 100 }
+      animation: { duration: 0 }
     }
   });
 
@@ -902,7 +905,8 @@ function initCharts() {
         tension: 0.98,
         fill: true,
         pointRadius: 0,
-        borderWidth: 3.5
+        borderWidth: 3.5,
+        spanGaps: true
       }]
     },
     options: {
@@ -913,7 +917,7 @@ function initCharts() {
         x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
         y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
       },
-      animation: { duration: 100 }
+      animation: { duration: 0 }
     }
   });
 
@@ -1070,21 +1074,27 @@ function updateAll(data) {
   mainChart.data.datasets[3].data = data.map(d=>d.wind??null);
   mainChart.update();
 
-  // Graphiques détaillés
-  tempChart.data.labels = labels;
-  tempChart.data.datasets[0].data = data.map(d=>d.temperature??null);
+  // Graphiques détaillés - mise à jour avec tous les labels et données
+  const labels2 = data.map((d, i) => {
+    const timestamp = d.timestamp || now - (data.length - 1 - i) * 5000;
+    const dateObj = new Date(timestamp);
+    return dateObj.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  });
+
+  tempChart.data.labels = labels2;
+  tempChart.data.datasets[0].data = data.map(d => d.temperature ?? null);
   tempChart.update('none');
 
-  humChart.data.labels = labels;
-  humChart.data.datasets[0].data = data.map(d=>d.humidity??null);
+  humChart.data.labels = labels2;
+  humChart.data.datasets[0].data = data.map(d => d.humidity ?? null);
   humChart.update('none');
 
-  lightChart.data.labels = labels;
-  lightChart.data.datasets[0].data = data.map(d=>d.light??null);
+  lightChart.data.labels = labels2;
+  lightChart.data.datasets[0].data = data.map(d => d.light ?? null);
   lightChart.update('none');
 
-  windChart.data.labels = labels;
-  windChart.data.datasets[0].data = data.map(d=>d.wind??null);
+  windChart.data.labels = labels2;
+  windChart.data.datasets[0].data = data.map(d => d.wind ?? null);
   windChart.update('none');
 
   // History
