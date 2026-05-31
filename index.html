@@ -242,6 +242,14 @@ body {
 .main-chart-card {
   padding: 24px;
 }
+.sensor-charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.sensor-detail-chart {
+  padding: 20px;
+}
 .card-title {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 15px; font-weight: 600;
@@ -403,6 +411,7 @@ tbody tr:hover td { background:rgba(79,124,255,0.03); }
 
 @media(max-width:1100px){
   .sensor-grid   { grid-template-columns:repeat(3,1fr); }
+  .sensor-charts-grid { grid-template-columns: 1fr; }
   .mid-row       { grid-template-columns:1fr 1fr; }
   .mid-row .main-chart-card { grid-column:1/-1; }
   .bottom-row    { grid-template-columns:1fr; }
@@ -565,6 +574,42 @@ tbody tr:hover td { background:rgba(79,124,255,0.03); }
       </div>
     </div>
 
+  </div>
+
+  <!-- INDIVIDUAL SENSOR CHARTS -->
+  <div style="margin-bottom: 20px;">
+    <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 16px;">📊 Graphiques détaillés par capteur</div>
+    <div class="sensor-charts-grid">
+      
+      <div class="glass sensor-detail-chart">
+        <div class="card-title">🌡️ Température</div>
+        <div style="position:relative;width:100%;height:200px;">
+          <canvas id="tempChart" role="img" aria-label="Courbe température détaillée">Courbe température.</canvas>
+        </div>
+      </div>
+
+      <div class="glass sensor-detail-chart">
+        <div class="card-title">💧 Humidité</div>
+        <div style="position:relative;width:100%;height:200px;">
+          <canvas id="humChart" role="img" aria-label="Courbe humidité détaillée">Courbe humidité.</canvas>
+        </div>
+      </div>
+
+      <div class="glass sensor-detail-chart">
+        <div class="card-title">☀️ Luminosité</div>
+        <div style="position:relative;width:100%;height:200px;">
+          <canvas id="lightChart" role="img" aria-label="Courbe luminosité détaillée">Courbe luminosité.</canvas>
+        </div>
+      </div>
+
+      <div class="glass sensor-detail-chart">
+        <div class="card-title">💨 Vent</div>
+        <div style="position:relative;width:100%;height:200px;">
+          <canvas id="windChart" role="img" aria-label="Courbe vent détaillée">Courbe vent.</canvas>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <!-- GAUGES -->
@@ -730,7 +775,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 // ===== CHARTS =====
-let mainChart, donutChart;
+let mainChart, donutChart, tempChart, humChart, lightChart, windChart;
 
 function initCharts() {
   const c1 = document.getElementById('mainChart').getContext('2d');
@@ -753,6 +798,134 @@ function initCharts() {
         y:{ ticks:{ color:'#8896b3',font:{size:10} }, grid:{ color:'rgba(0,0,0,0.04)' }, border:{color:'rgba(0,0,0,0.06)'} }
       },
       animation:{ duration:500 }
+    }
+  });
+
+  // Graphique Température détaillé
+  const cT = document.getElementById('tempChart').getContext('2d');
+  tempChart = new Chart(cT, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'Température °C',
+        data: [],
+        borderColor: '#ff7043',
+        backgroundColor: 'rgba(255,112,67,0.15)',
+        tension: 0.45,
+        fill: true,
+        pointRadius: 4,
+        pointBackgroundColor: '#ff7043',
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 2,
+        borderWidth: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: true, position: 'top' } },
+      scales: {
+        x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
+        y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
+      },
+      animation: { duration: 300 }
+    }
+  });
+
+  // Graphique Humidité détaillé
+  const cH = document.getElementById('humChart').getContext('2d');
+  humChart = new Chart(cH, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'Humidité %',
+        data: [],
+        borderColor: '#06c0d9',
+        backgroundColor: 'rgba(6,192,217,0.15)',
+        tension: 0.45,
+        fill: true,
+        pointRadius: 4,
+        pointBackgroundColor: '#06c0d9',
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 2,
+        borderWidth: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: true, position: 'top' } },
+      scales: {
+        x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
+        y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' }, min: 0, max: 100 }
+      },
+      animation: { duration: 300 }
+    }
+  });
+
+  // Graphique Luminosité détaillé
+  const cL = document.getElementById('lightChart').getContext('2d');
+  lightChart = new Chart(cL, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'Luminosité %',
+        data: [],
+        borderColor: '#ffb300',
+        backgroundColor: 'rgba(255,179,0,0.15)',
+        tension: 0.45,
+        fill: true,
+        pointRadius: 4,
+        pointBackgroundColor: '#ffb300',
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 2,
+        borderWidth: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: true, position: 'top' } },
+      scales: {
+        x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
+        y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' }, min: 0, max: 100 }
+      },
+      animation: { duration: 300 }
+    }
+  });
+
+  // Graphique Vent détaillé
+  const cW = document.getElementById('windChart').getContext('2d');
+  windChart = new Chart(cW, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'Vent m/s',
+        data: [],
+        borderColor: '#845ef7',
+        backgroundColor: 'rgba(132,94,247,0.15)',
+        tension: 0.45,
+        fill: true,
+        pointRadius: 4,
+        pointBackgroundColor: '#845ef7',
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 2,
+        borderWidth: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: true, position: 'top' } },
+      scales: {
+        x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
+        y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
+      },
+      animation: { duration: 300 }
     }
   });
 
@@ -908,6 +1081,23 @@ function updateAll(data) {
   mainChart.data.datasets[2].data = data.map(d=>d.light??null);
   mainChart.data.datasets[3].data = data.map(d=>d.wind??null);
   mainChart.update();
+
+  // Graphiques détaillés
+  tempChart.data.labels = labels;
+  tempChart.data.datasets[0].data = data.map(d=>d.temperature??null);
+  tempChart.update('none');
+
+  humChart.data.labels = labels;
+  humChart.data.datasets[0].data = data.map(d=>d.humidity??null);
+  humChart.update('none');
+
+  lightChart.data.labels = labels;
+  lightChart.data.datasets[0].data = data.map(d=>d.light??null);
+  lightChart.update('none');
+
+  windChart.data.labels = labels;
+  windChart.data.datasets[0].data = data.map(d=>d.wind??null);
+  windChart.update('none');
 
   // History
   const tbody = document.getElementById('histBody');
