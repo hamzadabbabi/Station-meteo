@@ -515,7 +515,7 @@ tbody tr:hover td { background:rgba(79,124,255,0.03); }
     <!-- Main Chart -->
     <div class="glass main-chart-card">
       <div class="card-title">📈 Évolution en temps réel</div>
-      <div class="card-sub">20 dernières mesures · mis à jour automatiquement</div>
+      <div class="card-sub">50 dernières mesures · mis à jour automatiquement</div>
       <div class="chart-legend">
         <span class="legend-item"><span class="legend-swatch" style="background:#ff7043"></span>Température</span>
         <span class="legend-item"><span class="legend-swatch" style="background:#06c0d9;border-top:2px dashed #06c0d9;background:none;border-bottom:2px dashed #06c0d9;height:0;width:20px;margin:2px 0"></span>Humidité</span>
@@ -784,10 +784,10 @@ function initCharts() {
     data: {
       labels: [],
       datasets: [
-        { label:'Temp °C',   data:[], borderColor:'#ff7043', backgroundColor:'rgba(255,112,67,0.08)', tension:0.45, fill:true,  pointRadius:3, pointBackgroundColor:'#ff7043', borderWidth:2.5, borderDash:[] },
-        { label:'Hum %',     data:[], borderColor:'#06c0d9', backgroundColor:'rgba(6,192,217,0.06)',  tension:0.45, fill:true,  pointRadius:3, pointBackgroundColor:'#06c0d9', borderWidth:2,   borderDash:[5,4] },
-        { label:'Lum %',     data:[], borderColor:'#ffb300', backgroundColor:'rgba(255,179,0,0.05)',  tension:0.45, fill:false, pointRadius:2, pointBackgroundColor:'#ffb300', borderWidth:2,   borderDash:[] },
-        { label:'Vent m/s',  data:[], borderColor:'#845ef7', backgroundColor:'rgba(132,94,247,0.05)', tension:0.45, fill:false, pointRadius:2, pointBackgroundColor:'#845ef7', borderWidth:1.5, borderDash:[3,3] }
+        { label:'Temp °C',   data:[], borderColor:'#ff7043', backgroundColor:'rgba(255,112,67,0.12)', tension:0.65, fill:true,  pointRadius:4, pointBackgroundColor:'#ff7043', pointBorderColor:'#ffffff', pointBorderWidth:1.5, borderWidth:3 },
+        { label:'Hum %',     data:[], borderColor:'#06c0d9', backgroundColor:'rgba(6,192,217,0.1)',  tension:0.65, fill:true,  pointRadius:4, pointBackgroundColor:'#06c0d9', pointBorderColor:'#ffffff', pointBorderWidth:1.5, borderWidth:3, borderDash:[5,4] },
+        { label:'Lum %',     data:[], borderColor:'#ffb300', backgroundColor:'rgba(255,179,0,0.08)',  tension:0.65, fill:false, pointRadius:3, pointBackgroundColor:'#ffb300', pointBorderColor:'#ffffff', pointBorderWidth:1, borderWidth:2.5 },
+        { label:'Vent m/s',  data:[], borderColor:'#845ef7', backgroundColor:'rgba(132,94,247,0.08)', tension:0.65, fill:false, pointRadius:3, pointBackgroundColor:'#845ef7', pointBorderColor:'#ffffff', pointBorderWidth:1, borderWidth:2.5 }
       ]
     },
     options: {
@@ -1127,7 +1127,7 @@ function updateAll(data) {
 // ===== FIREBASE LISTENER =====
 initCharts();
 
-db.ref('/mesures').limitToLast(20).on('value', snap => {
+db.ref('/mesures').limitToLast(50).on('value', snap => {
   const data = [];
   snap.forEach(child => data.push(child.val()));
   if (data.length) updateAll(data);
