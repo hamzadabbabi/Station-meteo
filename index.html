@@ -723,7 +723,7 @@ function processSnapshot(data) {
 // ===== INIT + ÉCOUTE FIREBASE =====
 initCharts();
 
-db.ref('/').limitToLast(1000).on('value', snap => {
+db.ref('/mesures').limitToLast(1000).on('value', snap => {
   const data = [];
   snap.forEach(child => data.push(child.val()));
   if (data.length) processSnapshot(data);
