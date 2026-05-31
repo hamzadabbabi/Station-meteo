@@ -794,7 +794,7 @@ function initCharts() {
       responsive:true, maintainAspectRatio:false,
       plugins:{ legend:{ display:false } },
       scales:{
-        x:{ ticks:{ color:'#8896b3',font:{size:10},maxRotation:0 }, grid:{ color:'rgba(0,0,0,0.04)' }, border:{color:'rgba(0,0,0,0.06)'} },
+        x:{ ticks:{ color:'#8896b3',font:{size:10},maxRotation:0, maxTicksLimit: 10 }, grid:{ color:'rgba(0,0,0,0.04)' }, border:{color:'rgba(0,0,0,0.06)'} },
         y:{ ticks:{ color:'#8896b3',font:{size:10} }, grid:{ color:'rgba(0,0,0,0.04)' }, border:{color:'rgba(0,0,0,0.06)'} }
       },
       animation:{ duration:200 }
@@ -824,7 +824,10 @@ function initCharts() {
       maintainAspectRatio: false,
       plugins: { legend: { display: true, position: 'top' } },
       scales: {
-        x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
+        x: { 
+          ticks: { color: '#8896b3', font: { size: 10 }, maxTicksLimit: 8 }, 
+          grid: { color: 'rgba(0,0,0,0.04)' } 
+        },
         y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
       },
       animation: { duration: 0 }
@@ -854,7 +857,10 @@ function initCharts() {
       maintainAspectRatio: false,
       plugins: { legend: { display: true, position: 'top' } },
       scales: {
-        x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
+        x: { 
+          ticks: { color: '#8896b3', font: { size: 10 }, maxTicksLimit: 8 }, 
+          grid: { color: 'rgba(0,0,0,0.04)' } 
+        },
         y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' }, min: 0, max: 100 }
       },
       animation: { duration: 0 }
@@ -884,7 +890,10 @@ function initCharts() {
       maintainAspectRatio: false,
       plugins: { legend: { display: true, position: 'top' } },
       scales: {
-        x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
+        x: { 
+          ticks: { color: '#8896b3', font: { size: 10 }, maxTicksLimit: 8 }, 
+          grid: { color: 'rgba(0,0,0,0.04)' } 
+        },
         y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' }, min: 0, max: 100 }
       },
       animation: { duration: 0 }
@@ -914,7 +923,10 @@ function initCharts() {
       maintainAspectRatio: false,
       plugins: { legend: { display: true, position: 'top' } },
       scales: {
-        x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
+        x: { 
+          ticks: { color: '#8896b3', font: { size: 10 }, maxTicksLimit: 8 }, 
+          grid: { color: 'rgba(0,0,0,0.04)' } 
+        },
         y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
       },
       animation: { duration: 0 }
