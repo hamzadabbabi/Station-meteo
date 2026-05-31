@@ -515,7 +515,7 @@ tbody tr:hover td { background:rgba(79,124,255,0.03); }
     <!-- Main Chart -->
     <div class="glass main-chart-card">
       <div class="card-title">📈 Évolution en temps réel</div>
-      <div class="card-sub">100 dernières mesures · mis à jour automatiquement</div>
+      <div class="card-sub">Jusqu'à 1000 mesures · mise à jour continue</div>
       <div class="chart-legend">
         <span class="legend-item"><span class="legend-swatch" style="background:#ff7043"></span>Température</span>
         <span class="legend-item"><span class="legend-swatch" style="background:#06c0d9;border-top:2px dashed #06c0d9;background:none;border-bottom:2px dashed #06c0d9;height:0;width:20px;margin:2px 0"></span>Humidité</span>
@@ -784,10 +784,10 @@ function initCharts() {
     data: {
       labels: [],
       datasets: [
-        { label:'Temp °C',   data:[], borderColor:'#ff7043', backgroundColor:'rgba(255,112,67,0.2)', tension:0.95, fill:true,  pointRadius:0, borderWidth:3.5, segment: { borderDash: ctx => ctx.p1DataIndex === undefined ? [] : undefined } },
-        { label:'Hum %',     data:[], borderColor:'#06c0d9', backgroundColor:'rgba(6,192,217,0.18)',  tension:0.95, fill:true,  pointRadius:0, borderWidth:3.5, segment: { borderDash: ctx => ctx.p1DataIndex === undefined ? [] : undefined }, borderDash:[5,4] },
-        { label:'Lum %',     data:[], borderColor:'#ffb300', backgroundColor:'rgba(255,179,0,0.12)',  tension:0.95, fill:false, pointRadius:0, borderWidth:3 },
-        { label:'Vent m/s',  data:[], borderColor:'#845ef7', backgroundColor:'rgba(132,94,247,0.12)', tension:0.95, fill:false, pointRadius:0, borderWidth:3 }
+        { label:'Temp °C',   data:[], borderColor:'#ff7043', backgroundColor:'rgba(255,112,67,0.2)', tension:0.98, fill:true,  pointRadius:0, borderWidth:3.5 },
+        { label:'Hum %',     data:[], borderColor:'#06c0d9', backgroundColor:'rgba(6,192,217,0.18)',  tension:0.98, fill:true,  pointRadius:0, borderWidth:3.5, borderDash:[5,4] },
+        { label:'Lum %',     data:[], borderColor:'#ffb300', backgroundColor:'rgba(255,179,0,0.12)',  tension:0.98, fill:false, pointRadius:0, borderWidth:3 },
+        { label:'Vent m/s',  data:[], borderColor:'#845ef7', backgroundColor:'rgba(132,94,247,0.12)', tension:0.98, fill:false, pointRadius:0, borderWidth:3 }
       ]
     },
     options: {
@@ -797,7 +797,7 @@ function initCharts() {
         x:{ ticks:{ color:'#8896b3',font:{size:10},maxRotation:0 }, grid:{ color:'rgba(0,0,0,0.04)' }, border:{color:'rgba(0,0,0,0.06)'} },
         y:{ ticks:{ color:'#8896b3',font:{size:10} }, grid:{ color:'rgba(0,0,0,0.04)' }, border:{color:'rgba(0,0,0,0.06)'} }
       },
-      animation:{ duration:300 }
+      animation:{ duration:200 }
     }
   });
 
@@ -812,7 +812,7 @@ function initCharts() {
         data: [],
         borderColor: '#ff7043',
         backgroundColor: 'rgba(255,112,67,0.2)',
-        tension: 0.95,
+        tension: 0.98,
         fill: true,
         pointRadius: 0,
         borderWidth: 3.5
@@ -826,7 +826,7 @@ function initCharts() {
         x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
         y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
       },
-      animation: { duration: 300 }
+      animation: { duration: 100 }
     }
   });
 
@@ -841,7 +841,7 @@ function initCharts() {
         data: [],
         borderColor: '#06c0d9',
         backgroundColor: 'rgba(6,192,217,0.2)',
-        tension: 0.95,
+        tension: 0.98,
         fill: true,
         pointRadius: 0,
         borderWidth: 3.5
@@ -855,7 +855,7 @@ function initCharts() {
         x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
         y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' }, min: 0, max: 100 }
       },
-      animation: { duration: 300 }
+      animation: { duration: 100 }
     }
   });
 
@@ -870,7 +870,7 @@ function initCharts() {
         data: [],
         borderColor: '#ffb300',
         backgroundColor: 'rgba(255,179,0,0.2)',
-        tension: 0.95,
+        tension: 0.98,
         fill: true,
         pointRadius: 0,
         borderWidth: 3.5
@@ -884,7 +884,7 @@ function initCharts() {
         x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
         y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' }, min: 0, max: 100 }
       },
-      animation: { duration: 300 }
+      animation: { duration: 100 }
     }
   });
 
@@ -899,7 +899,7 @@ function initCharts() {
         data: [],
         borderColor: '#845ef7',
         backgroundColor: 'rgba(132,94,247,0.2)',
-        tension: 0.95,
+        tension: 0.98,
         fill: true,
         pointRadius: 0,
         borderWidth: 3.5
@@ -913,7 +913,7 @@ function initCharts() {
         x: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
         y: { ticks: { color: '#8896b3', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
       },
-      animation: { duration: 300 }
+      animation: { duration: 100 }
     }
   });
 
@@ -1115,7 +1115,7 @@ function updateAll(data) {
 // ===== FIREBASE LISTENER =====
 initCharts();
 
-db.ref('/mesures').limitToLast(100).on('value', snap => {
+db.ref('/mesures').limitToLast(1000).on('value', snap => {
   const data = [];
   snap.forEach(child => data.push(child.val()));
   if (data.length) updateAll(data);
